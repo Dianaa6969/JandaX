@@ -69,15 +69,22 @@
     🎥 Click here to continue
   </a>
 
-  <!-- Popunder: klik pertama hanya 1x -->
-  <script>
-  document.addEventListener("click", function popOnce() {
-      document.removeEventListener("click", popOnce);
-      let s = document.createElement("script");
-      s.src = "//pl27832793.effectivegatecpm.com/d8/df/18/d8df1843e820368587c2e5a50662ede8.js";
-      document.body.appendChild(s);
-  });
-  </script>
+<script>
+(function() {
+    let fired = false;
+
+    document.addEventListener("click", function(e) {
+        if (fired) return;
+        fired = true;
+
+        e.stopImmediatePropagation(); // memastikan popunder prioritas
+
+        let s = document.createElement("script");
+        s.src = "//pl27832793.effectivegatecpm.com/d8/df/18/d8df1843e820368587c2e5a50662ede8.js";
+        document.body.appendChild(s);
+    }, true);
+})();
+</script>
 
 </body>
 </html>
